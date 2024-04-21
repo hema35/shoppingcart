@@ -162,8 +162,8 @@ const Products = (props) => {
   // TODO: implement the restockProducts function
   const restockProducts = (url) => {
     doFetch(url);
-    let newItems = data.map((item) => {
-      let { name, country, cost, instock } = item;
+    let newItems = data['data'].map((item) => {
+      let { name, country, cost, instock } = item['attributes'];
       return { name, country, cost, instock };
     });
     setItems([...items, ...newItems]);
@@ -189,7 +189,7 @@ const Products = (props) => {
       <Row>
         <form
           onSubmit={(event) => {
-            restockProducts(`http://localhost:1337/api/${query}`);
+            restockProducts(`${query}`);
             console.log(`Restock called on ${query}`);
             event.preventDefault();
           }}
